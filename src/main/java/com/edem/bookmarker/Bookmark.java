@@ -14,7 +14,7 @@ import java.time.Instant;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Bookmarker {
+public class Bookmark {
     @Id
     @SequenceGenerator(name = " ", sequenceName = "bm_id_sec")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "bm_id_sec_gen")
