@@ -15,9 +15,9 @@ import java.util.List;
 public class BookmarkService {
     private final BookmarkRepository bookmarkRepository;
 
-    public List<Bookmark> getBookmarks(Integer page){
+    public BookmarkDTO getBookmarks(Integer page){
         int pageNo = page < 1 ? 0 : page -1;
         Pageable pageable = PageRequest.of(pageNo,10, Sort.Direction.DESC, "createdAt");
-        return bookmarkRepository.findAll(pageable).getContent();
+        return new BookmarkDTO(bookmarkRepository.findAll(pageable));
     }
 }
