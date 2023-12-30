@@ -10,8 +10,6 @@ import java.time.Instant;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class BookmarkDTO {
     private Long id;
 
@@ -20,4 +18,11 @@ public class BookmarkDTO {
     private String url;
 
     private Instant createdAt;
+
+    public BookmarkDTO(Long id, String title, String url, Instant createdAt) {
+        this.id = id;
+        this.title = title;
+        this.url = url;
+        this.createdAt = createdAt;
+    }
 }
