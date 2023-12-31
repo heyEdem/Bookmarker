@@ -10,22 +10,29 @@ import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+//import org.testcontainers.shaded.com.github.dockerjava.core.MediaType;
 
+import javax.print.attribute.standard.Media;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.springframework.http.RequestEntity.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.testcontainers.shaded.org.hamcrest.Matchers.is;
+import static org.testcontainers.shaded.org.hamcrest.Matchers.notNullValue;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
-//@TestPropertySource(properties = {
-//        "spring.datasource.url=jdbc:tc:postgresql:14-alpine:///postgres"
-//})
+@TestPropertySource(properties = {
+        "spring.datasource.url=jdbc:tc:postgresql:14-alpine:///postgres"
+})
 class BookmarkControllerTest {
     @Autowired
     private MockMvc mvc;
@@ -74,7 +81,24 @@ class BookmarkControllerTest {
                 .andExpect(jsonPath("$.isLast",CoreMatchers.equalTo(isLast)))
                 .andExpect(jsonPath("$.hasNext",CoreMatchers.equalTo(hasNext)))
                 .andExpect(jsonPath("$.hasPrevious",CoreMatchers.equalTo(hasPrevious)));
-
     }
+
+//    @Test
+//    void shouldCreateBookmark() throws Exception{
+//        this.mvc.perform(
+//                post("/api/bookmark")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                                {
+//                                    "title": "heyEdem",
+//                                    "url: "https://edemakato.org"
+//                                }
+//                                """)
+//                )
+//                .andExpect(status().isCreated())
+//                .andExpect(jsonPath("$.id",notNullValue()))
+//                .andExpect(jsonPath("$.title",is("heyEdem")))
+//                .andExpect(jsonPath("$.url",is("https://edemakato.org")));
+//    }
 
 }
