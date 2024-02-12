@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from "next/link";
 
 const Navbar = () => (
     <header>
@@ -14,7 +15,7 @@ const Navbar = () => (
                 <div className="collapse navbar-collapse" id="navbarCollapse">
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
-                            <a className="nav-link"  href="#">Add Bookmark</a>
+                            <a className="nav-link" href="/public/add">Add Bookmark</a>
                         </li>
                     </ul>
                 </div>
